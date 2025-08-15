@@ -1,39 +1,57 @@
 import type {
-	ExpressiveCodeConfig,
+    ExpressiveCodeConfig,
+	ImageFallbackConfig,
 	LicenseConfig,
 	NavBarConfig,
 	ProfileConfig,
 	SiteConfig,
+	UmamiConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "码境Code Realm",
-	subtitle: "爱你一生",
+	title: "AcoFork Blog",
+	description:
+		"分享网络技术、服务器部署、内网穿透、静态网站搭建、CDN优化、容器化部署等技术教程与实践经验的个人技术博客，专注于云原生、无服务器架构和前后端开发，作者为afoim/二叉树树",
+
+	keywords: [],
 	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
 	themeColor: {
-		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
-		fixed: false, // Hide the theme color picker for visitors
+		hue: 361, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
+		fixed: true, // Hide the theme color picker for visitors
+		forceDarkMode: true, // Force dark mode and hide theme switcher
 	},
 	banner: {
-		enable: true,
-		src: "https://img.xn--ohqu9y07ujpb.dpdns.org/file/1754446851075_banner.DBvCl2Qg_ZBX2hI.webp", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		enable: false,
+		src: "/xinghui.avif", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: true, // Display the credit text of the banner image
 			text: "Pixiv @chokei", // Credit text to be displayed
-			url: "https://www.pixiv.net/users/175341486", // (Optional) URL link to the original artwork or artist's page
+
+			url: "https://www.pixiv.net/artworks/122782209", // (Optional) URL link to the original artwork or artist's page
 		},
+	},
+	background: {
+		enable: true, // Enable background image
+		src: "https://eopageapi.2x.nz/pic?img=h", // Background image URL (supports HTTPS)
+		position: "center", // Background position: 'top', 'center', 'bottom'
+		size: "cover", // Background size: 'cover', 'contain', 'auto'
+		repeat: "no-repeat", // Background repeat: 'no-repeat', 'repeat', 'repeat-x', 'repeat-y'
+		attachment: "fixed", // Background attachment: 'fixed', 'scroll', 'local'
+		opacity: 0.5, // Background opacity (0-1)
 	},
 	toc: {
 		enable: true, // Display the table of contents on the right side of the post
 		depth: 2, // Maximum heading depth to show in the table, from 1 to 3
 	},
 	favicon: [
+		// Leave this array empty to use the default favicon
 		{
-			src: "https://e5bf5984.cloudflare-imgbed-csc.pages.dev/file/1753414862012_0_b67f5a87763bc15d58d147d89ff8823c_1753414687712.webp", // Path of the favicon, relative to the /public directory
-			theme: "light", // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-			sizes: "32x32", // (Optional) Size of the favicon, set only if you have favicons of different sizes
+			src: "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0", // Path of the favicon, relative to the /public directory
+			//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
+			//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
 		},
 	],
 };
@@ -45,48 +63,41 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		{
 			name: "友链",
-			url: "https://github.com/saicaca/fuwari", // Internal links should not include the base path, as it is automatically added
+			url: "/friends/", // Internal links should not include the base path, as it is automatically added
+			external: false, // Show an external link icon and will open in a new tab
+		},
+		{
+			name: "赞助",
+			url: "/donate/", // Internal links should not include the base path, as it is automatically added
 			external: false, // Show an external link icon and will open in a new tab
 		},
 		{
 			name: "统计",
-			url: "https://cloud.umami.is/share/azr29Ow6KU9YfL2U/kejidao.ggff.net", // Internal links should not include the base path, as it is automatically added
+			url: "https://umami.2x.nz/share/ZyDjOrmjaBTlmGtd", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 		{
-			name: "GitHub",
-			url: "https://github.com/saicaca/fuwari", // Internal links should not include the base path, as it is automatically added
+			name: "状态",
+			url: "https://ss.2x.nz/", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/demo-tx.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "码境Code Realm",
-	bio: "Protect What You Love./爱你所爱！",
+	avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	name: "二叉树树",
+	bio: "你往小腹下探探有棍你就倒倒有豆你就点点比网站好玩🥰",
 	links: [
 		{
-			name: "YouTube",
-			icon: "fa6-brands:youtube", // Visit https://icones.js.org/ for icon codes
-			// You will need to install the corresponding icon set if it's not already included
-			// `pnpm add @iconify-json/<icon-set-name>`
-			url: "https://www.youtube.com/@xs.903",
-		},
-		{
-			name: "QQ",
-			icon: "fa6-brands:qq",
-			url: "https://wpa.qq.com/msgrd?v=3&uin=584524731&site=qq&menu=yes",
+			name: "Bilibli",
+			icon: "fa6-brands:bilibili",
+			url: "https://space.bilibili.com/325903362",
 		},
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/wangai14/fuwari",
-		},
-		{
-			name: "B站",
-			icon: "fa6-brands:bilibili",
-			url: "https://space.bilibili.com/485156002?spm_id_from=333.1007.0.0",
+			url: "https://github.com/afoim",
 		},
 	],
 };
@@ -97,8 +108,19 @@ export const licenseConfig: LicenseConfig = {
 	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 };
 
+export const imageFallbackConfig: ImageFallbackConfig = {
+	enable: true,
+	originalDomain: "eo-r2.2x.nz",
+	fallbackDomain: "pub-d433ca7edaa74994b3d7c40a7fd7d9ac.r2.dev",
+};
+
+export const umamiConfig: UmamiConfig = {
+	enable: true,
+	baseUrl: "https://umami.2x.nz",
+	shareId: "ZyDjOrmjaBTlmGtd",
+	timezone: "Asia/Shanghai",
+};
+
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
-	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
-	// Please select a dark theme, as this blog theme currently only supports dark background color
 	theme: "github-dark",
 };
